@@ -99,20 +99,20 @@ int agregarEn(int num, int posicion , Lista *lista){
     if(lista->tamano+1>=posicion){
         if(posicion==1){
             
-                lista->head->prev=new_node;
-                new_node->next= lista->head;
-                lista->ultimo->next=new_node;
-                new_node->prev=lista->ultimo;
-                lista->head=new_node;
+            lista->head->prev=new_node;
+            new_node->next= lista->head;
+            lista->ultimo->next=new_node;
+            new_node->prev=lista->ultimo;
+            lista->head=new_node;
             
             lista->tamano++; 
         }else if(posicion==lista->tamano+1){
             
-                lista->ultimo->next=new_node;
-                new_node->next= lista->head;
-                new_node->prev = lista->ultimo;
-                lista->ultimo=new_node;
-                lista->head->prev = lista->ultimo;
+            lista->ultimo->next=new_node;
+            new_node->next= lista->head;
+            new_node->prev = lista->ultimo;
+            lista->ultimo=new_node;
+            lista->head->prev = lista->ultimo;
             
             lista->tamano++; 
         }else{
