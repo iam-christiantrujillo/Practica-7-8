@@ -9,3 +9,4 @@ void addFinalLista(Lista*,int);
 int agregarEn(int, int , Lista*);
 void borrarPrimero(Lista*);
 void borrarUltimo(Lista*);
+void imprimirTamano(Lista);

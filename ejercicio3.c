@@ -9,6 +9,7 @@ int main(){
 
     int opc;
     int num;
+    int posicion;
     
 
     while(1){
@@ -20,7 +21,8 @@ int main(){
         printf("5) Agregar elemento en alguna posicion\n");
         printf("6) Eliminar el primer elemento de la lista\n");
         printf("7) Eliminar el ultimo elemento de la lista\n");
-        printf("8) Salir\n");
+        printf("8) Imprimir tamaño de la lista\n");
+        printf("9) Salir\n");
         
         scanf("%d", &opc);
 
@@ -33,10 +35,26 @@ int main(){
                 imprimirFI(a);
                 break;
 
+            case 3:
+                printf("¿Que valor entero te gustaria agregar?\n");
+                scanf("%d", &num);
+                addPrincipioLista(&a, num);
+                printf("\n¡Operacion realizada!\n");
+                break;
+
             case 4:
                 printf("¿Que valor entero te gustaria agregar?\n");
                 scanf("%d", &num);
                 addFinalLista(&a, num);
+                printf("\n¡Operacion realizada!\n");
+                break;
+
+            case 5:
+                printf("¿Que valor entero te gustaria agregar?\n");
+                scanf("%d", &num);
+                printf("¿En que posicion?\n");
+                scanf("%d", &posicion);
+                agregarEn(num, posicion, &a);
                 printf("\n¡Operacion realizada!\n");
                 break;
 
@@ -51,6 +69,11 @@ int main(){
                 break;
             
             case 8:
+                imprimiTamano(a);
+                printf("\n¡Operacion realizada!\n");
+                break;
+
+            case 9:
                 return 0;
 
             default:

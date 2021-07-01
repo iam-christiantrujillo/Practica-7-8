@@ -54,6 +54,25 @@ void imprimirFI(Lista lista) {
 
 }
 
+void addPrincipioLista(Lista *lista,int val){
+    Nodo *nodo = (Nodo*)malloc(sizeof(Nodo));
+	nodo->val = val;
+
+    if(lista->head==NULL){
+        lista->head = nodo;
+    	lista->head->next = lista->head;
+        lista->ultimo = lista->head;
+        lista->head->prev = lista->ultimo;
+    }else{
+        lista->head->prev=nodo;
+        nodo->next= lista->head;
+        lista->ultimo->next=nodo;
+        nodo->prev=lista->ultimo;
+        lista->head=nodo;
+    }
+    lista->tamano++; 
+}
+
 void addFinalLista(Lista *lista, int val) {
     Nodo *nodo = (Nodo*)malloc(sizeof(Nodo));
 	nodo->val = val;
@@ -72,6 +91,60 @@ void addFinalLista(Lista *lista, int val) {
 	}	
 	lista->tamano++; 
 }
+
+int agregarEn(int num, int posicion , Lista *lista){
+    Nodo *new_node=(Nodo*)malloc(sizeof(Nodo));
+	new_node->val=num;
+
+    if(lista->tamano+1>=posicion){
+        if(posicion==1){
+            
+                lista->head->prev=new_node;
+                new_node->next= lista->head;
+                lista->ultimo->next=new_node;
+                new_node->prev=lista->ultimo;
+                lista->head=new_node;
+            
+            lista->tamano++; 
+        }else if(posicion==lista->tamano+1){
+            
+                lista->ultimo->next=new_node;
+                new_node->next= lista->head;
+                new_node->prev = lista->ultimo;
+                lista->ultimo=new_node;
+                lista->head->prev = lista->ultimo;
+            
+            lista->tamano++; 
+        }else{
+            printf("Valor de posicion: %d\n", posicion);
+            printf("Entramos aqui\n");
+            Nodo *current = lista->head;
+	        for(int i=1; i<posicion;i++){
+		        current=current->next;
+                
+	        }
+            printf("Entramos en 1 %d\n", current->val);
+            new_node->next=current;
+            current->prev=new_node;
+            current=lista->head;
+            posicion--;
+            printf("Valor de posicion: %d\n", posicion);
+            for(int j=1; j<posicion;j++){
+		        current=current->next;
+            }
+            printf("Entramos en 2 %d\n", current->val);
+            current->next=new_node;
+            new_node->prev=current;
+            lista->tamano++; 
+        }
+    }else{
+        printf("No es posible realizar la operacion debido al tamano de la lista\n");
+    }
+
+
+    return 0;
+}
+
 
 void borrarPrimero(Lista* lista){
     if (lista->head == NULL) {
@@ -119,4 +192,8 @@ void borrarUltimo(Lista* lista){
     		
     	
 	}
+}
+
+void imprimiTamano(Lista lista){
+    printf("Tamano de la lista: %d\n", lista.tamano);
 }
